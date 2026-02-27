@@ -17,6 +17,8 @@ int main () {
     float area_cidade_1; // A área em quilômetros quadrados da cidade da primeira carta
     float pib_cidade_1; // O PIB da cidade da primeira carta 
     int pontos_turisticos_cidade_1; // Números de pontos turisticos da cidade da primeira carta
+    float densidade_populacional_cidade_1; // A Densidade Populacional da cidade da primeira carta
+    float pib_per_capita_cidade_1; // O PIB per Capita da cidade da primeira carta
 
     // Informações da cidade 2
     // SEGUNDA CARTA
@@ -27,6 +29,8 @@ int main () {
     float area_cidade_2; // A área em quilômetros quadrados da cidade da segunda carta
     float pib_cidade_2; // O PIB da cidade da segunda carta 
     int pontos_turisticos_cidade_2; // Números de pontos turisticos da cidade da segunda carta
+    float densidade_populacional_cidade_2; // A Densidade Populacional da cidade da segunda carta
+    float pib_per_capita_cidade_2; // O PIB per Capita da cidade da segunda carta
 
 
     printf("Bem-vindo! Cadastre suas cartas do jogo Super Trunfo!\n");
@@ -59,7 +63,20 @@ int main () {
     printf("Primeira carta cadastrada com sucesso!\n");
     printf("---------------------------------------------------------------\n");
     // Fim do cadastro da primeira carta
-    // Agora o usuário vai para o momento de cadastrar a segunda carta
+    // Agora com as informações insiridas, o programa vai calcular a Densidade Populacional e o PIB per Capita da primeria carta
+
+    // Calcular Densidade Populacional da primeira cidade
+    densidade_populacional_cidade_1 = (float) populacao_cidade_1 / area_cidade_1;
+
+    // Calcular PIB per Capita da primeira cidade
+    /*
+        Fazemos o pib da cidade da carta vezes 1000000000.0 para que,
+        converta o valor digitado que seria por exemplo, 699.28, para 
+        um valor em bilhão para que seja realizavel a divisao; e não de
+        um resultado minusculo, como seria sem essa multiplicação, 
+        sendo neste caso por exemplo, 0.000056.
+    */
+    pib_per_capita_cidade_1 = (float) (pib_cidade_1 * 1000000000.0) / populacao_cidade_1;
 
     // Uma quebra de linha média, para melhor visualização do cadastro da segunda carta
     printf("\n\n");
@@ -92,11 +109,20 @@ int main () {
     printf("Segunda carta cadastrada com sucesso!\n");
     printf("---------------------------------------------------------------\n");
     // Fim do cadastro da segunda carta carta
-    // Agora o usuário vai para o momento de ver as duas cartas cadastradas
+    // Agora com as informações insiridas, o programa vai calcular a Densidade Populacional e o PIB per Capita da segunda carta
+
+    // Calcular Densidade Populacional da primeira cidade
+    densidade_populacional_cidade_2 = (float) populacao_cidade_2 / area_cidade_2;
+
+    // Calcular PIB per Capita da primeira cidade
+    // Mesma conversão para bilhão real, o valor do pib, multiplicando por 1000000000.0
+    pib_per_capita_cidade_2 = (float) (pib_cidade_2 * 1000000000.0) / populacao_cidade_2;
 
     // Uma quebra de linha grande, para melhor visualização das cartas
     printf("\n\n\n");
 
+    // Agora o usuário vai para o momento de ver as duas cartas cadastradas
+    
     // Visualização das cartas cadastradas
     printf("--------------------------------------------------------------------\n");
     printf("Cartas cadastradas no sistema:\n");
@@ -112,6 +138,8 @@ int main () {
     printf("ÁREA TOTAL: %.2f KM²\n", area_cidade_1);
     printf("PIB: %.2f BILHÕES DE REAIS\n", pib_cidade_1);
     printf("NÚMEROS DE PONTOS TURÍSTICOS: %d\n", pontos_turisticos_cidade_1);
+    printf("DENSIDADE POPULACIONAL: %.2f HAB/KM²\n", densidade_populacional_cidade_1);
+    printf("PIB PER CAPITA: %.2f REAIS\n", pib_per_capita_cidade_1);
     printf("----------------------------------------\n");
 
     // Carta 2
@@ -124,6 +152,8 @@ int main () {
     printf("ÁREA TOTAL: %.2f KM²\n", area_cidade_2);
     printf("PIB: %.2f BILHÕES DE REAIS\n", pib_cidade_2);
     printf("NÚMEROS DE PONTOS TURÍSTICOS: %d\n", pontos_turisticos_cidade_2);
+    printf("DENSIDADE POPULACIONAL: %.2f HAB/KM²\n", densidade_populacional_cidade_2);
+    printf("PIB PER CAPITA: %.2f REAIS\n", pib_per_capita_cidade_2);
     printf("----------------------------------------\n");
 
     return 0;
