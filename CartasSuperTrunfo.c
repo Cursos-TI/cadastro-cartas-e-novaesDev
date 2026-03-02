@@ -18,7 +18,9 @@ int main () {
     float pib_cidade_1; // O PIB da cidade da primeira carta 
     int pontos_turisticos_cidade_1; // Números de pontos turisticos da cidade da primeira carta
     float densidade_populacional_cidade_1; // A Densidade Populacional da cidade da primeira carta
+    float inverso_densidade_populacional_cidade_1; // O calculo do inverso da densidade populacional, para o calculo do Super Poder da primeira carta
     float pib_per_capita_cidade_1; // O PIB per Capita da cidade da primeira carta
+    float super_poder_cidade_1; // O Super Poder da primeira carta
 
     // Informações da cidade 2
     // SEGUNDA CARTA
@@ -30,7 +32,18 @@ int main () {
     float pib_cidade_2; // O PIB da cidade da segunda carta 
     int pontos_turisticos_cidade_2; // Números de pontos turisticos da cidade da segunda carta
     float densidade_populacional_cidade_2; // A Densidade Populacional da cidade da segunda carta
+    float inverso_densidade_populacional_cidade_2; // O calculo do inverso da densidade populacional, para o calculo do Super Poder da segunda carta
     float pib_per_capita_cidade_2; // O PIB per Capita da cidade da segunda carta
+    float super_poder_cidade_2; // O Super Poder da segunda carta
+
+    // Variaveis para os resultados das comparações entre as cartas
+    int resultado_populacao; // Comparação entre as populacões das Cartas 1 e 2
+    int resultado_area; // Comparação entre as áreas das cidades das Cartas 1 e 2
+    int resultado_pib; // Comparação entre os PIBs das Cartas 1 e 2
+    int resultado_pontos_turisticos; // Comparação entre os pontos turísticos das Cartas 1 e 2
+    int resultado_densidade_populacional; // Comparação entre as densidades populacionais das cidades das Cartas 1 e 2
+    int resultado_pib_per_capita; // Comparação entre os PIBs Per Capita das Cartas 1 e 2
+    int resultado_super_poder; // Comparação entre os Super Poderes das Cartas 1 e 2
 
 
     printf("Bem-vindo! Cadastre suas cartas do jogo Super Trunfo!\n");
@@ -118,6 +131,43 @@ int main () {
     // Mesma conversão para bilhão real, o valor do pib, multiplicando por 1000000000.0
     pib_per_capita_cidade_2 = (float) (pib_cidade_2 * 1000000000.0) / populacao_cidade_2;
 
+    // Calculando antes do Super Poder, o inverso da densidade populacional, pois aqui "menos é mais", para assim fazer o calculo do Super Poder
+    // Carta 1
+    inverso_densidade_populacional_cidade_1 = 1.0 / densidade_populacional_cidade_1;
+
+    // Carta 2
+    inverso_densidade_populacional_cidade_2 = 1.0 / densidade_populacional_cidade_2;
+
+    // Agora, somamos o Super Poder das cartas, que é a soma de todos os atributos numéricos de cada uma
+    // Super Poder da primeira carta
+    super_poder_cidade_1 = (float) 
+        populacao_cidade_1 +
+        area_cidade_1 +
+        pib_cidade_1 +
+        pontos_turisticos_cidade_1 +
+        pib_per_capita_cidade_1 +
+        inverso_densidade_populacional_cidade_1
+    ;
+
+    // Super Poder da segunda carta
+    super_poder_cidade_2 = (float) 
+        populacao_cidade_2 +
+        area_cidade_2 +
+        pib_cidade_2 +
+        pontos_turisticos_cidade_2 +
+        pib_per_capita_cidade_2 +
+        inverso_densidade_populacional_cidade_2
+    ;
+
+    // Por fim, fazemos as comparações, para depois, mostrar ao usuário, em qual âmbito, qual carta venceu
+    resultado_populacao = populacao_cidade_1 > populacao_cidade_2;
+    resultado_area = area_cidade_1 > area_cidade_2;
+    resultado_pib = pib_cidade_1 > pib_cidade_2;
+    resultado_pontos_turisticos = pontos_turisticos_cidade_1 > pontos_turisticos_cidade_2;
+    resultado_densidade_populacional = densidade_populacional_cidade_1 < densidade_populacional_cidade_2;
+    resultado_pib_per_capita = pib_per_capita_cidade_1 > pib_per_capita_cidade_2;
+    resultado_super_poder = super_poder_cidade_1 > super_poder_cidade_2;
+
     // Uma quebra de linha grande, para melhor visualização das cartas
     printf("\n\n\n");
 
@@ -141,6 +191,8 @@ int main () {
     printf("DENSIDADE POPULACIONAL: %.2f HAB/KM²\n", densidade_populacional_cidade_1);
     printf("PIB PER CAPITA: %.2f REAIS\n", pib_per_capita_cidade_1);
     printf("----------------------------------------\n");
+    printf("SUPER PODER: %f\n", super_poder_cidade_1);
+    printf("----------------------------------------\n");
 
     // Carta 2
     printf("\nCARTA 2\n");
@@ -155,6 +207,27 @@ int main () {
     printf("DENSIDADE POPULACIONAL: %.2f HAB/KM²\n", densidade_populacional_cidade_2);
     printf("PIB PER CAPITA: %.2f REAIS\n", pib_per_capita_cidade_2);
     printf("----------------------------------------\n");
+    printf("SUPER PODER: %f\n", super_poder_cidade_2);
+    printf("----------------------------------------\n\n\n");
+
+    // Agora o usuário vai ver as comparações entre as cartas
+
+    // Mostrando agora, os resultados das comparações entre as cartas
+    printf("--------------------------------------------------------------------\n");
+    printf("COMPARAÇÃO ENTRE AS CARTAS\n");
+    printf("(Sendo, [1] para vitória da Carta 1, e [0], para a vitória da Carta 2)\n");
+    printf("--------------------------------------------------------------------\n\n");
+
+    printf("----------------------------------------\n");
+    printf("POPULAÇÃO: [%d]\n", resultado_populacao);
+    printf("ÁREA: [%d]\n", resultado_area);
+    printf("PIB: [%d]\n", resultado_pib);
+    printf("PONTOS TURÍSTICOS: [%d]\n", resultado_pontos_turisticos);
+    printf("DENSIDADE POPULACIONAL: [%d]\n", resultado_densidade_populacional);
+    printf("PIB PER CAPITA: [%d]\n", resultado_pib_per_capita);
+    printf("----------------------------------------\n");
+    printf("SUPER PODER: [%d]\n", resultado_super_poder);
+    printf("----------------------------------------\n\n");
 
     return 0;
 }
